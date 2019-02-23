@@ -15,6 +15,7 @@
     "sequelize": "^4.42.0",
     "socket.io": "^2.2.0",
     "sound-detection": "^0.1.1",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "web-push": "^3.3.3"
   }
 }
