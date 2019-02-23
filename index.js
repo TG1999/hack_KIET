@@ -51,8 +51,9 @@ io.on('connection',(socket)=>{
         const k=Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2);
         console.log(k);
         const d = Math.acos(k)*6731;
-        if(d>=0 || d<=1 || !flag){
+        if((d>=0 || d<=1) && !flag){
             flag=!flag;
+            console.log(flag);
             io.emit('notif')
         }
         console.log(data.lat,data.lon,data1.lat,data1.lon);
