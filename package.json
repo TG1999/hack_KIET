@@ -1,0 +1,19 @@
+{
+  "name": "traffic_hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "hbs": "^4.0.2",
+    "sequelize": "^4.42.0",
+    "sound-detection": "^0.1.1",
+    "sqlite3": "^4.0.6"
+  }
+}
