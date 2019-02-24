@@ -43,7 +43,7 @@ const publickey =
   "BM4dDUFxek5tNg2Q_1ANpNIAH72SaTMrLmAcW2b_WaIM9f7FEdFitxkiwLCABLWAvWuVMnf-zE2Zl90R0IFYwlk";
 const prvtkey = "FXdDTYKesce5zgO5QoIGMlWaH4bYVfrgUrAMkutvrl8";
 webpush.setVapidDetails("mailto:test@test.com", publickey, prvtkey);
-app.get('/viewchallan',(req,res)=>{
+app.post('/viewchallan',(req,res)=>{
   var id=req.body.id;
   var vh_n=req.body.num;
   user.findAll({where:{
@@ -61,6 +61,15 @@ app.get('/viewchallan',(req,res)=>{
         })
       }
     }
+  })
+})
+app.post('/createuser',(req,res)=>{
+  var veh_no=req.body.vno;
+  var email=req.body.email;
+  user.create({
+    veh_no,email_id:email
+  }).then((resp)=>{
+    res.send(resp)
   })
 })
 app.post("/subscribe", (req, res) => {
