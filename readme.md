@@ -5,7 +5,7 @@ With Road Relay we aim to find practical solutions for the following problems:-
 <ul>
   <li>Clutter free traffic for first responders such as Paramedics , Fire-crew , Police officers etc</li>
   <li>Combat driver drowsiness and fatigue</li>
-  <li>Monitoring and reporting of traffic rule violations using cameras embedded in a traffic light </li>
+  <li>Monitoring and reporting of traffic rule violations using cameras synced with a traffic light </li>
 </ul>
 
 <h2>A brief overview of the problems mentioned above</h2><br />
