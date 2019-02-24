@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300");
+@font-face {
+  font-family: rotondac;
+  src:url(../fonts/rotondac.woff.ttf);
+}
 .menu-btn {
   position: absolute;
   z-index: 3;
@@ -414,6 +418,7 @@ main#home h1 {
   font-weight: 900;
 }
 .textSecondary {
+  font-family: rotondac;
   color: #303030;
 }
 .green .logBtnMain {

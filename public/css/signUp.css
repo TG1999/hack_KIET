@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300");
+@font-face {
+  font-family: rotondac;
+  src:url(../fonts/rotondac.woff.ttf);
+}
+.menu-btn {
+  position: absolute;
+  z-index: 3;
+  right: 6rem;
+  top: 3.5rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+::placeholder {
+  color: white;
+}
+.menu-btn .btn-line {
+  width: 28px;
+  height: 3px;
+  margin: 0 0 5px 0;
+  background: #fff;
+  transition: 0.5s;
+}
+h1 {
+  font-size: 3rem;
+  padding-left: 1rem;
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.textSecondary
+{
+  font-family:rotondac;
+}
+
+body {
+  background: #4a535f;
+  color: white;
+  height: 100%;
+  margin: 0;
+  font-family: "Montserrat";
+  line-height: 1.5;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  margin-top: -8rem;
+}
+
+main {
+  margin: 4rem;
+  margin-top: 7rem;
+  background: #243142;
+  padding: 0 1rem;
+  min-height: 80vh;
+  overflow: hidden;
+  border-left: 15px solid #52c4b9;
+}
+main .icon a:hover {
+  color: #f13953;
+  transition: 0.5s;
+}
+main#home {
+  overflow: hidden;
+}
+main#home h1 {
+  margin-top: 20vh;
+}
+
+.about-info {
+  display: grid;
+  grid-template-areas: "bioimage bio bio";
+  grid-template-columns: repeat(1fr);
+  grid-gap: 30px;
+}
+
+.realTimelocs {
+  display: grid;
+  grid-template-areas: "frame1 frame2 frame3";
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+}
+
+#signUpbtn {
+  padding: 1rem;
+  border: none;
+  font-family: montserrat;
+  font-weight: 900;
+  background: #52c4b9;
+  border-radius: 50px;
+  color: white;
+  float: right;
+}
+
+.realTimelocs input {
+  font-family: montserrat;
+  border-bottom: 1.25px solid white;
+  font-size: 1.5rem;
+  margin-top: 2.25rem;
+  width: 90%;
+  margin-bottom: 2rem;
+}
+.capsule {
+  margin-left: 50rem;
+  margin-top: 0rem;
+}
+
+.capsule a:nth-child(even) {
+  color: white;
+  text-decoration: none;
+  padding: 0.65rem 1.5rem;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  font-weight: 900;
+  background: #52c4b9;
+}
+
+.capsule a:nth-child(odd) {
+  color: white;
+  text-decoration: none;
+  padding: 0.65rem 1.5rem;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  font-weight: 900;
+  background: #4a535f;
+}
+
+@media screen and (max-width: 500px) {
+  main#home h1 {
+    margin-top: 10vh;
+  }
+  .text-secondary {
+    transition: 0.5s;
+  }
+  main {
+    padding: 0.5rem;
+  }
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-branding,
+  menu,
+  .menu-btn,
+  .lg-heading {
+    display: none;
+    text-decoration: underline #52c4b9;
+  }
+
+  form {
+    padding: 1rem;
+  }
+
+  .logBtn {
+    text-decoration: none;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    padding: 0.55em;
+    background: #c45252;
+    border-radius: 50px;
+    font-family: montserrat;
+    letter-spacing: 0.15rem;
+    position: absolute;
+    font-weight: 900;
+    left: 60%;
+    margin-top: 70%;
+  }
+  #inputs {
+    margin-left: 0rem;
+    color: #fff;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    outline: none;
+    letter-spacing: 0.5rem;
+    width: 18rem;
+  }
+  .capsule {
+    position: absolute;
+    margin: 0;
+    margin-top: -16rem;
+  }
+}
