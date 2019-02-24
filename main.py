@@ -37,7 +37,7 @@ def cleanPlate(plate):
 	#thresh= cv2.dilate(gray, kernel, iterations=1)
 
 	_, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
-	im1,contours,hierarchy = cv2.findContours(thresh.copy(),cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+	contours,hierarchy = cv2.findContours(thresh.copy(),cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
 	if contours:
 		areas = [cv2.contourArea(c) for c in contours]
@@ -65,7 +65,7 @@ def extract_contours(threshold_img):
 	cv2.imshow("Morphed",morph_img_threshold)
 	cv2.waitKey(0)
 
-	im2,contours, hierarchy= cv2.findContours(morph_img_threshold,mode=cv2.RETR_EXTERNAL,method=cv2.CHAIN_APPROX_NONE)
+	contours, hierarchy= cv2.findContours(morph_img_threshold,mode=cv2.RETR_EXTERNAL,method=cv2.CHAIN_APPROX_NONE)
 	print("Morphing Complete ")
 	return contours
 
@@ -131,7 +131,6 @@ def entry(text):
 	conn.close()
 def cleanAndRead(img,contours):
 	#count=0
-	tess.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 	for i,cnt in enumerate(contours):
 		min_rect = cv2.minAreaRect(cnt)
 
@@ -166,7 +165,7 @@ def cleanAndRead(img,contours):
 
 if __name__ == '__main__':
 	print ("DETECTING PLATE . . .")
-	img = cv2.imread("testData/test4.JPG")
+	img = cv2.imread("testData/test4.jpg")
 	#img = cv2.imread("testData/test1.jpeg")
 
 	threshold_img = preprocess(img)
