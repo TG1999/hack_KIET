@@ -1,4 +1,3 @@
-
 import numpy as np
 import cv2
 from copy import deepcopy
@@ -6,6 +5,17 @@ from PIL import Image
 import pytesseract as tess
 import sqlite3
 import datetime
+'''from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+Base=declarative_base()
+
+from sqlalchemy import Column, String,Integer, Date
+
+class challan(Base):
+	__tablename__="challans"'''
+
 
 def preprocess(img):
 	cv2.imshow("Input",img)
@@ -106,14 +116,16 @@ def validateRotationAndRatio(rect):
 
 def entry(text):
 	pk=text
+	pk.replace(" ","")
+	print(pk)
 	x=str(datetime.datetime.now()).split()
 	d=x[0]
 	t=x[1]
 	id=0
-	conn=sqlite3.connect('tutorial.db')
+	conn=sqlite3.connect('data.db')
 	c=conn.cursor()
-	c.execute("CREATE TABLE IF NOT EXISTS challans(Vehicle_Number TEXT, Challan_id Number Primary Key , datestamp date,time_stamp time )")
-	c.execute("INSERT INTO challans VALUES(pk,id,d,t)")
+	#c.execute("CREATE TABLE IF NOT EXISTS challans(Vehicle_Number TEXT, Challan_id Number Primary Key , datestamp date,time_stamp time )")
+	c.execute("INSERT INTO challans (veh_no) VALUES(pk)")
 	conn.commit()
 	c.close()
 	conn.close()

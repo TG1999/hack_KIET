@@ -20,6 +20,8 @@ app.use(express.static(__dirname + "/public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
+const challan=require('./model/db').challan;
+const user=require('./model/db').user;
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -41,6 +43,26 @@ const publickey =
   "BM4dDUFxek5tNg2Q_1ANpNIAH72SaTMrLmAcW2b_WaIM9f7FEdFitxkiwLCABLWAvWuVMnf-zE2Zl90R0IFYwlk";
 const prvtkey = "FXdDTYKesce5zgO5QoIGMlWaH4bYVfrgUrAMkutvrl8";
 webpush.setVapidDetails("mailto:test@test.com", publickey, prvtkey);
+app.get('/viewchallan',(req,res)=>{
+  var id=req.body.id;
+  var vh_n=req.body.num;
+  user.findAll({where:{
+    veh_no:vh_n
+  }}).then((resp)=>{
+    if(Array.isArray(resp)){
+      for(var r in resp)
+      {
+        challan.findAll({
+          where:{
+            veh_no:r.veh_no
+          }
+        }).then((resp)=>{
+          res.send(resp)
+        })
+      }
+    }
+  })
+})
 app.post("/subscribe", (req, res) => {
   // Get pushSubscription object
   const subscription = req.body;
