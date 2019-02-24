@@ -3,19 +3,22 @@ const db=new Sequelize('patient','root','password',{
     dialect:'sqlite',
     host:'localhost',
     port:3306,
-    storage:'./../data.db',
+    storage:'data.db',
     freezeTableName: true,
     operatorsAliases: false,
 })
 
 var challan=db.define('challans',{
-    challan_id:{
+        challan_id:{
             type:Sequelize.INTEGER,
             primaryKey:true,
             autoIncrement:true,
         },
         veh_no:{
             type:Sequelize.STRING
+        },
+        user_id:{
+            type:Sequelize.INTEGER   
         }
 }
 )
@@ -28,7 +31,7 @@ var user=db.define('users',{
         veh_no:{
             type:Sequelize.STRING
         },
-        email_id:{
+        name:{
             type:Sequelize.STRING
         }
 }

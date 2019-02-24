@@ -10,7 +10,6 @@ const cookieparser = require("cookie-parser");
 const bodyParser = require("body-parser");
 app.use(cookieparser());
 var spawn = require("child_process").spawn;
-spawn("python", ["detect_drowsiness.py"]);
 app.use(bodyParser.json());
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views/"));
@@ -35,7 +34,10 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var d = R * c; // Distance in km
   return d;
 }
-
+app.get('/drows',(req,res)=>{
+  spawn("python3", ["detect_drowsiness.py"]);
+  res.redirect('land.html');
+})
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
@@ -43,32 +45,43 @@ const publickey =
   "BM4dDUFxek5tNg2Q_1ANpNIAH72SaTMrLmAcW2b_WaIM9f7FEdFitxkiwLCABLWAvWuVMnf-zE2Zl90R0IFYwlk";
 const prvtkey = "FXdDTYKesce5zgO5QoIGMlWaH4bYVfrgUrAMkutvrl8";
 webpush.setVapidDetails("mailto:test@test.com", publickey, prvtkey);
-app.post('/viewchallan',(req,res)=>{
-  var id=req.body.id;
-  var vh_n=req.body.num;
-  user.findAll({where:{
-    veh_no:vh_n
-  }}).then((resp)=>{
-    if(Array.isArray(resp)){
-      for(var r in resp)
-      {
-        challan.findAll({
-          where:{
-            veh_no:r.veh_no
-          }
-        }).then((resp)=>{
-          res.send(resp)
-        })
-      }
+app.get('/addchallan/:vn',(req,res)=>{
+  var veh_no=req.params.vn;
+  // var user_id=req.params.id;
+  user.findOne({
+    where:{
+      veh_no
     }
+  }).then((resp)=>{
+    challan.create({
+      veh_no,
+      user_id:resp.user_id
+    }).then((resp)=>{
+      res.send(resp)
+    })
   })
 })
-app.post('/createuser',(req,res)=>{
-  var veh_no=req.body.vno;
-  var email=req.body.email;
+app.get('/viewchallan/a/:id',(req,res)=>{
+  var id=req.params.id;
+  var vh_n=req.params.vn;
+  challan.findAll({
+    where:{
+      user_id:id
+    }
+  }).then(resp=>{
+    console.log(resp);
+    res.send(resp)
+  }
+    )
+})
+app.get('/createuser/:vno/:name',(req,res)=>{
+  var veh_no=req.params.vno;
+  var name=req.params.name;
+  // var email=req.body.email;
   user.create({
-    veh_no,email_id:email
+    veh_no,name
   }).then((resp)=>{
+    console.log(resp);
     res.send(resp)
   })
 })
