@@ -115,11 +115,14 @@ def validateRotationAndRatio(rect):
 		return True
 
 def entry(text):
-	pk=text
+	pk=""
+	for i in text:
+		if 65<=ord(i)<=90 or 48<=ord(i)<=57:
+			pk+=i
 	pk.replace(" ","")
 	url="http://localhost:2000/addchallan/{}".format(pk)
 	print(pk,url)
-	r=request.get(url)
+	r=requests.get(url)
 def entry2(text):
 	pk=text
 	pk.replace(" ","")
