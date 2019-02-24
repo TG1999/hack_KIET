@@ -20,6 +20,23 @@ app.use(express.static(__dirname + "/public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
 const publickey =
   "BM4dDUFxek5tNg2Q_1ANpNIAH72SaTMrLmAcW2b_WaIM9f7FEdFitxkiwLCABLWAvWuVMnf-zE2Zl90R0IFYwlk";
 const prvtkey = "FXdDTYKesce5zgO5QoIGMlWaH4bYVfrgUrAMkutvrl8";
@@ -47,21 +64,20 @@ io.on("connection", socket => {
     data = data_t;
   });
   socket.on("loc_user", data1 => {
-    var lat1 = data.lat;
-    var lat2 = data1.lat;
-    var lon1 = data.lon;
-    var lon2 = data1.lon;
-    const k =
-      Math.sin(lat1) * Math.sin(lat2) +
-      Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2);
-    console.log(k);
-    const d = Math.acos(k) * 6731;
-    if ((d >= 0 || d <= 1) && !flag) {
-      flag = !flag;
+    lat2=28.7473;
+    lon2=77.4899;
+    var lat1 = 28.7522;
+    // var lat2 = data1.lat;
+    var lon1 =77.4988 ;
+    console.log(data.lat,data.lon);
+    // var lon2 = data1.lon;
+d=getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2);
+    console.log(d);
+    if ((d >= 0 && d <= 1) && !flag) {
+      flag=!flag;
       console.log(flag);
       io.emit("notif");
     }
-    console.log(data.lat, data.lon, data1.lat, data1.lon);
   });
 });
 server.listen(2000, () => {
