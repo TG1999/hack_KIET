@@ -116,9 +116,10 @@ def validateRotationAndRatio(rect):
 
 def entry(text):
 	pk=text
-	pk.replace(" "."")
-	print(pk)
-	r=request.get("http://localhost:2000/addchallan/{}".format(pk))
+	pk.replace(" ","")
+	url="http://localhost:2000/addchallan/{}".format(pk)
+	print(pk,url)
+	r=request.get(url)
 def entry2(text):
 	pk=text
 	pk.replace(" ","")
@@ -159,10 +160,10 @@ def cleanAndRead(img,contours):
 					
 					text = tess.image_to_string(plate_im, lang='eng')
 					print ("Detected Text : ",text)
-					entry(text)
 					img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2)
 					cv2.imshow("Detected Plate",img)
 					cv2.waitKey(0)
+					entry(text)
 
 	#print "No. of final cont : " , count
 
