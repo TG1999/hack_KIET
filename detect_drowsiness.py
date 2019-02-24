@@ -54,8 +54,8 @@ args={
 # blink and then a second constant for the number of consecutive
 # frames the eye must be below the threshold for to set off the
 # alarm
-EYE_AR_THRESH = 0.2
-EYE_AR_CONSEC_FRAMES = 60
+EYE_AR_THRESH = 0.25
+EYE_AR_CONSEC_FRAMES = 48
 
 # initialize the frame counter as well as a boolean used to
 # indicate if the alarm is going off
@@ -112,8 +112,8 @@ while True:
 		# visualize each of the eyes
 		leftEyeHull = cv2.convexHull(leftEye)
 		rightEyeHull = cv2.convexHull(rightEye)
-		cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
-		cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
+		#cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
+		#cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
 
 		# check to see if the eye aspect ratio is below the blink
 		# threshold, and if so, increment the blink frame counter
