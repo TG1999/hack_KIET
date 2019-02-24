@@ -5,6 +5,7 @@ from PIL import Image
 import pytesseract as tess
 import sqlite3
 import datetime
+import requests
 '''from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -113,8 +114,12 @@ def validateRotationAndRatio(rect):
 	else:
 		return True
 
-
 def entry(text):
+	pk=text
+	pk.replace(" "."")
+	print(pk)
+	r=request.get("http://localhost:2000/addchallan/{}".format(pk))
+def entry2(text):
 	pk=text
 	pk.replace(" ","")
 	print(pk)
