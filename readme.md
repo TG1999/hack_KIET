@@ -43,6 +43,7 @@ organized traffic.</b>
   <li>Sass - for styling</li>
   <li>node.js - evented I/O for the backend</li>
   <li>Express - fast node.js network app framework</li>
+  <li>Tesseract – for image to string processing</li>
 </ul>
 
 <br />
