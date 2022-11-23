@@ -13,7 +13,7 @@
     "express": "^4.16.4",
     "hbs": "^4.0.2",
     "sequelize": "^5.15.1",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.5.0",
     "sound-detection": "^0.1.1",
     "sqlite3": "^4.0.6",
     "web-push": "^3.3.3"
